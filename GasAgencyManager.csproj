@@ -1,0 +1,100 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+
+
+  <PropertyGroup>
+
+    <OutputType>WinExe</OutputType>
+
+    <TargetFramework>net10.0-windows</TargetFramework>
+
+    <Nullable>enable</Nullable>
+
+    <ImplicitUsings>enable</ImplicitUsings>
+
+    <UseWPF>true</UseWPF>
+
+    <ApplicationIcon Condition="Exists('Assets\Branding\icon-output\app-icon-transparent.ico')">Assets\Branding\icon-output\app-icon-transparent.ico</ApplicationIcon>
+
+    <AssemblyName>GasAgencyManager</AssemblyName>
+
+  </PropertyGroup>
+
+
+
+  <!-- Single portable .exe settings (used by: dotnet publish -p:PublishSingleFile=true) -->
+
+  <PropertyGroup Condition="'$(PublishSingleFile)' == 'true'">
+
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+
+    <SelfContained>true</SelfContained>
+
+    <PublishSingleFile>true</PublishSingleFile>
+
+    <IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
+
+    <IncludeAllContentForSelfExtract>true</IncludeAllContentForSelfExtract>
+
+    <EnableCompressionInSingleFile>true</EnableCompressionInSingleFile>
+
+    <PublishReadyToRun>true</PublishReadyToRun>
+
+    <DebugType>none</DebugType>
+
+    <DebugSymbols>false</DebugSymbols>
+
+  </PropertyGroup>
+
+
+
+  <ItemGroup>
+
+    <None Remove="AgencyDB.db" />
+
+  </ItemGroup>
+
+
+
+  <ItemGroup>
+
+    <Content Include="AgencyDB.db" Condition="Exists('AgencyDB.db')">
+
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+
+    </Content>
+
+  </ItemGroup>
+
+
+
+  <ItemGroup>
+
+    <PackageReference Include="Microsoft.Data.Sqlite" Version="10.0.3" />
+
+  </ItemGroup>
+
+
+
+  <ItemGroup>
+
+    <Folder Include="GasAgencyManager.Tests\" />
+
+  </ItemGroup>
+
+
+
+  <ItemGroup>
+
+    <Resource Include="Assets\Branding\logo-source.png" Condition="Exists('Assets\Branding\logo-source.png')" />
+
+    <Resource Include="Assets\Branding\icon-output\app-icon-transparent.ico" Condition="Exists('Assets\Branding\icon-output\app-icon-transparent.ico')" />
+
+  </ItemGroup>
+
+
+
+</Project>
+
+
+
